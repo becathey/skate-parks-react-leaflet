@@ -1,6 +1,12 @@
 import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Icon } from 'leaflet'
 import * as parkData from './assets/skate-parks.json'
 import './App.css'
+
+const skater = new Icon({
+  iconUrl: '/skater.svg',
+  iconSize: [25, 25]
+})
 
 function App() {
   return (
@@ -17,6 +23,7 @@ function App() {
               park.geometry.coordinates[1],
               park.geometry.coordinates[0]
             ]}
+            icon={skater}
           >
             <Popup 
               position={[
