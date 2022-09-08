@@ -18,16 +18,23 @@ function App() {
         style={{height: "100vh"}}
         ref={setMap}
       /> */}
-      <MapContainer style={{height: '100%', width: '100%'}} center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+      <MapContainer style={{height: '100%', width: '100%'}} center={[45.31535558124887, -75.69539230092572]} zoom={9} scrollWheelZoom={false}>
         <TileLayer 
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
+        {parkData.features.map(park => (
+          <Marker 
+            key={park.properties.PARK_ID}
+            position={[
+              park.geometry.coordinates[1],
+              park.geometry.coordinates[0]
+            ]}>
+              <Popup>
+                {park.properties.NAME}
+              </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   )
